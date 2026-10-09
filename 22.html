@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Tiara Aliza 🥰🎉❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #fff0f5; /* Soft Pink */
+            --text-main: #4a2c31;
+            --accent-red: #ff4d6d;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .romantic-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Floating Hearts Background */
+        .bg-hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.3);
+            font-size: 20px;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Music Button */
+        #music-btn {
+            position: fixed;
+            top: 20px; right: 20px;
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+            display: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Start Screen */
+        #start-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        #start-screen h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #start-screen p {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: var(--white);
+            color: var(--accent-red);
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .btn:hover { transform: scale(1.05); }
+
+        /* Main Content */
+        #main-content {
+            display: none;
+            padding-bottom: 50px;
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Typed Text */
+        .typing-container {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            margin: 20px 0;
+            min-height: 60px;
+        }
+
+        /* Galeri */
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 90%;
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid:hover { transform: scale(1.05); z-index: 10; }
+        .polaroid img { width: 100%; border-radius: 5px; height: auto; aspect-ratio: 4/5; object-fit: cover;}
+        .caption { margin-top: 15px; font-family: 'Playfair Display', serif; font-style: italic; color: #555; }
+
+        .slideshow {
+            position: relative;
+            width: 90%;
+            border: 10px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+        }
+        .slideshow img {
+            width: 100%; height: 100%; object-fit: cover;
+            position: absolute; top: 0; left: 0;
+            opacity: 0; transition: opacity 1s;
+        }
+        .slideshow img.active { opacity: 1; }
+
+        /* Ucapan */
+        .ucapan-box {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.1);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        /* Envelope / Surat Cinta */
+        .envelope-wrapper {
+            margin: 40px auto;
+            position: relative;
+            width: 280px; height: 200px;
+            cursor: pointer;
+        }
+        .envelope {
+            position: absolute; width: 100%; height: 100%;
+            background: #e6a8b1; border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        .envelope:before {
+            content: ''; position: absolute; top: 0; left: 0;
+            border-left: 140px solid transparent; border-right: 140px solid transparent;
+            border-top: 100px solid #d4959e; transform-origin: top;
+            transition: transform 0.5s; z-index: 4;
+        }
+        .envelope-wrapper.open .envelope:before {
+            transform: rotateX(180deg); z-index: 1;
+        }
+        .letter {
+            position: absolute; bottom: 0; left: 10px; right: 10px;
+            background: white; padding: 20px; border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 1s, height 1s; z-index: 3;
+            overflow: hidden; height: 180px; font-size: 0.85rem;
+            text-align: left;
+        }
+        .envelope-wrapper.open .letter {
+            transform: translateY(-80px); height: 350px; z-index: 5;
+            overflow-y: auto;
+        }
+
+        /* Harapan */
+        .wishes { display: flex; flex-direction: column; gap: 15px; }
+        .wish-card {
+            background: white; padding: 15px; border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex; align-items: center; gap: 10px;
+            transform: translateY(20px); opacity: 0; transition: 0.5s;
+        }
+        .wish-card.show { transform: translateY(0); opacity: 1; }
+
+        /* Akhir */
+        #akhir {
+            position: relative; height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; background: url('/fotobersama.jpeg') center/cover no-repeat;
+            color: white; padding: 20px;
+        }
+        #akhir::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 1;
+        }
+        #akhir > * { z-index: 2; position: relative; }
+        #akhir h1 { font-size: 2.5rem; color: var(--accent-red); text-shadow: 2px 2px white; margin-bottom: 20px;}
+        #akhir p { font-size: 1.1rem; margin-bottom: 30px; text-align: center; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bg-music" src="/jos.mp3" loop></audio>
+    <button id="music-btn" onclick="toggleMusic()">🎵</button>
+
+    <!-- Floating Hearts -->
+    <div class="bg-hearts" id="hearts-container"></div>
+
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <h1 class="romantic-font">Happy Birthday, Tiara Aliza 😘❤️‍🔥</h1>
+        <p>Hari ini adalah hari spesial, karena seseorang yang sangat berarti dalam hidupku bertambah usia.</p>
+        <button class="btn" onclick="openGift()">Jangan lupa di klik sayangku🤗❤️</button>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="container">
+        
+        <section id="hero">
+            <h2 class="romantic-font typing-container" id="typewriter"></h2>
+        </section>
+
+        <!-- Galeri Foto -->
+        <section id="gallery">
+            <div class="polaroid">
+                <img src="/senyum.jpeg" alt="cantikku">
+                <div class="caption">Senyum yang selalu aku rindu 🥰❤️‍🔥
+            </div>
+            
+            <div class="slideshow">
+                <img src="/melet.mov" class="active" alt="Slide 1">
+                <img src="/a382cd55-67a6-4480-b4ca-c555b870af12.jpeg" alt="Slide 2">
+                <img src="/mangap.mov" alt="Slide 3">
+            </div>
+            <p class="caption" style="margin-top: -10px;">Setiap detik bersamamu adalah keindahan 😍✨</p>
+        </section>
+
+        <!-- Pesan Romantis -->
+        <section id="ucapan">
+            <div class="ucapan-box">
+                <p><strong>Selamat ulang tahun, sayangku cintaku🤗❤️</strong></p><br>
+                <p>Terima kasih sudah bertahan sejauh ini. Selamat atas bertambah angka usia dan berkurangnya jatah hidup dunia. Kamu adalah manusia yang paling dinantikan hadirnya yang tumbuh menjadi manusia tangguh untuk menghadapi dunia. Semoga selalu diberikan ruang ikhlas dan rasa syukur yang lapang.</p><br>
+                <p>Mungkin hidup terlalu memberi banyak luka yang selalu mampu kamu lewati, semoga tahun-tahun selanjutnya luka itu luruh satu persatu diganti bahagia untukmu. Di hari-hari sebelumnya, sekarang, dan selanjutnya ku doakan selalu.</p><br>
+                <p>Semoga Allah selalu menjagamu, semoga Allah selalu menuntunmu, semoga Allah selalu memberi izin semesta memihak hidupmu. Semoga hidupmu berteman dengan perasaan lapang untuk apapun yang belum diberi untukmu.</p><br>
+                <p><strong>Happy Birthday Sayangku Cintaku. Aku sayang kamu, hari ini, besok, dan seterusnya😘️❤️‍🔥</strong></p>
+            </div>
+        </section>
+
+        <!-- Surat Cinta Amplop -->
+        <section id="surat">
+            <h3 class="romantic-font">Surat kecil untuk kamu 💌</h3>
+            <p style="font-size: 0.8rem; color:#888;">(Ketuk amplop untuk membuka)</p>
+            <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+                <div class="envelope"></div>
+                <div class="letter">
+                    <p><strong>Untuk kamu perempuan tangguh yang selalu aku banggakan,</strong></p><br>
+                    <p>Diantara banyaknya sedih bahkan sempit yang menghampirimu, semoga kamu selalu diberi alasan-alasan kecil yang mampu membangkitkan semangatmu untuk terus memperjuangkan mimpi baikmu.</p><br>
+                    <p>Segala lelah, sakit, yang selalu mampu kamu hadapi. Semoga kamu selalu berterimakasih kepada dirimu yang hebat itu.</p><br>
+                    <p>Terima kasih sudah menjadi bagian terindah dalam hidupku.</p>
+                    <p> I Love You Tiara🥰❤️‍🔥
+                </div>
+            </div>
+        </section>
+
+        <!-- Harapan -->
+        <section id="harapan">
+            <div class="wishes">
+                <div class="wish-card">❤️ <span>Semoga selalu bahagia</span></div>
+                <div class="wish-card">🌷 <span>Semoga semua impianmu tercapai</span></div>
+                <div class="wish-card">✨ <span>Semoga selalu diberikan kesehatan</span></div>
+                <div class="wish-card">💫 <span>Semoga langkahmu selalu dimudahkan</span></div>
+                <div class="wish-card">❤️ <span>Semoga kita selalu bersama</span></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Akhir / Footer -->
+    <div id="akhir" style="display:none;">
+        <h1 class="romantic-font text-center">Once again...<br>Happy Birthday, My Love ❤️</h1>
+        <p>Terima kasih sudah menjadi bagian dari cerita hidupku.</p>
+        <button class="btn" onclick="window.scrollTo(0,0)">Putar lagi ya sayang😋❤️</button>
+    </div>
+
+    <script>
+        // Floating Hearts Logic
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for(let i=0; i<30; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Music Logic
+        let music = document.getElementById('bg-music');
+        let isPlaying = false;
+        function toggleMusic() {
+            if(isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('music-btn').style.opacity = '0.5';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.getElementById('music-btn').style.opacity = '1';
+            }
+        }
+
+        // Open Gift (Transition)
+        function openGift() {
+            document.getElementById('start-screen').style.transform = 'translateY(-100vh)';
+            setTimeout(() => {
+                document.getElementById('start-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('akhir').style.display = 'flex';
+                document.getElementById('music-btn').style.display = 'block';
+                toggleMusic(); // Autoplay music
+                typeWriter();
+                triggerConfetti();
+            }, 800);
+        }
+
+        // Typing Effect
+        const text = "Hi Tiara Aliza...😚❤️";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+
+        // Slideshow Auto
+        let slides = document.querySelectorAll('.slideshow img');
+        let currentSlide = 0;
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+        }, 3000);
+
+        // Scroll Animation for Wishes
+        window.addEventListener('scroll', () => {
+            let cards = document.querySelectorAll('.wish-card');
+            cards.forEach(card => {
+                let cardPosition = card.getBoundingClientRect().top;
+                if(cardPosition < window.innerHeight - 50) {
+                    card.classList.add('show');
+                }
+            });
+        });
+
+        // Simple Confetti on Open
+        function triggerConfetti() {
+            for(let i=0; i<50; i++) {
+                let conf = document.createElement('div');
+                conf.innerHTML = '🎉';
+                conf.style.position = 'fixed';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.top = '-50px';
+                conf.style.zIndex = '9999';
+                conf.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                conf.style.transition = 'transform 3s linear, opacity 3s';
+                document.body.appendChild(conf);
+
+                setTimeout(() => {
+                    conf.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random()*360}deg)`;
+                    conf.style.opacity = '0';
+                }, 10);
+                setTimeout(() => conf.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
